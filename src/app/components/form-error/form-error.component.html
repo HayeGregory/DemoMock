@@ -1,0 +1,26 @@
+<!-- 
+  detecter les actions de l'utilisateur avec :
+  .invalid .valid : si le formulaire est invalide ou non 
+  .dirty .pristine : si la valeur du control a changer ou non
+  .touched .untouched : si le champs a ete touché  ou non 
+  .pending : dans le cas d'un validators async 
+            (il se pourrait que tout soit valide mais qu'on soit en attente de la verification)
+  
+ -->
+<div
+  *ngIf="
+    control &&
+    control.invalid &&
+    (control.touched || control.dirty) &&
+    !control.disabled
+  "
+>
+  <!-- Detection des errors rencontrées : requis, longeur nom, interval prix, etc -->
+  <p *ngIf="control.errors?.required">Le champs est requis</p>
+
+  <p *ngIf="control.errors?.minlength">Le champs est trop court</p>
+  <p *ngIf="control.errors?.maxlength">Le champs est trop long</p>
+
+  <p *ngIf="control.errors?.min">Valeur positive uniquement</p>
+  <p *ngIf="control.errors?.max">pas abuser avec le prix</p>
+</div>

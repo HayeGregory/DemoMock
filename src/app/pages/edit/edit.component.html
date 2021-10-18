@@ -1,0 +1,18 @@
+<a routerLink="/index"> Revenir à l'index</a>
+
+<form [formGroup]="formGroup" (ngSubmit)="submit()">
+  <div>
+    <input placeholder="Nom" type="text" formControlName="name" />
+    <!-- gestion des erreurs avec notre composant form-error -->
+    <app-form-error [control]="formGroup.get('name')"></app-form-error>
+  </div>
+
+  <div>
+    <input placeholder="Prix" type="number" formControlName="price" />
+    <app-form-error [control]="formGroup.get('price')"></app-form-error>
+  </div>
+
+  <div>
+    <button [disabled]="formGroup.invalid">Sauvegarder</button>
+  </div>
+</form>

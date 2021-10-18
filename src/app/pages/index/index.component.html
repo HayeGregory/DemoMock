@@ -1,0 +1,20 @@
+<button routerLink="/add">Nouveau ...</button>
+
+<table>
+  <tr>
+    <th>ID</th>
+    <th>Nom</th>
+    <th>Prix</th>
+    <th>Actions</th>
+  </tr>
+
+  <tr *ngFor="let produit of products">
+    <td>{{ produit.id }}</td>
+    <td>{{ produit.name }}</td>
+    <td>{{ produit.price | currency: "eur" }}</td>
+    <td>
+      <button [routerLink]="['/update', produit.id]">Editer</button>
+      <button (click)="delete(produit.id)">Supprimer</button>
+    </td>
+  </tr>
+</table>

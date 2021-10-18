@@ -1,0 +1,24 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "chaise",
+      "price": 49.99
+    },
+    {
+      "id": 2,
+      "name": "table",
+      "price": 149.99
+    },
+    {
+      "id": 3,
+      "name": "étagère",
+      "price": 75
+    },
+    {
+      "name": "coca",
+      "price": 5,
+      "id": 4
+    }
+  ]
+}
