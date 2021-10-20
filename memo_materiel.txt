@@ -1,0 +1,99 @@
+System de design concu par google
+pleins de specifications sur tous les elements de design et comment les implementer
+
+material design
+==> https://material.io/
+
+
+une librairie permettant d'implementer toutes les specifications de material
+
+Angular material :
+==> https://material.angular.io/
+
+
+Installation :
+
+ng add (un peu comme npm install):
+Installe des packages + execution d'un script d'installation par le package en question
+
+==> ng add @angular/material
+
+- choisir un theme de base (ou definir un theme custom )
+- mettre en place un systme de typo d'angular  (n)
+  ( ensemble de classe utilisable dans l'application)
+- mettre en place des animations (y)
+
+
+==> modifications dans l'app apporté par l'installation :
+- package.json (cdk, material) (cdk : gestion scroll, drag and drop,...)
+- app module : BrowserAnimationModule
+- angualar.json (style pour ajouter le scss pour le theme)
+- maj link et css pour index.html et style.css
+
+
+On est pas obligé d'utiliser tout, on ajoute les fonctionalités qu'on a besoin
+Une des facons d'implementer material : 
+- creer un dossier shared 
+- un dossier modules (tous vos modules partagés)
+- creer un module material : 
+  ==> c'est ici qu'on placera les imports des components qu'on voudra utiliser
+  - on peut clean : retirer l'import commonModule, retirer  declarations: [],
+
+- ajouter ce module dans l'import de app.module 
+
+Pour utiliser un component specifique : 
+==> tout component a un module dédier qu'il faudra importer 
+    Mat[NomComposant]Module 
+    MatButtonModule (pour utiliser les boutons)
+- import manuel : 
+    import { ... } from '@angular/material/...'
+    import { MatButtonModule } from '@angular/material/button'
+- creer une constante MATERIALS (on y ajoutera ce qu'on a besoin)
+- ajouter dans la partie import et export  (pour l'utiliser ailleurs)
+
+------------------------------------------------------------------------------
+
+==> on peut choisir une des trois couleurs du theme (indigo - pink ) : 
+primary :       indigo  
+accent :        pink  
+warn :          orange/rouge
+
+pour utiliser n'importe quel input : MatFormFieldModule
+
+input :         MatInputModule
+    - entourer l'input de mat-form-field
+    - ajouter la directive : matInput
+    - placeholder utilisable  
+        -> on fonctionnera avec un label + float-label(never, always, auto)
+    - hint : mat-hint
+    - directive prefix, suffix, 
+    - error : mat-error
+
+Checkbox :      MatCheckboxModule
+Radio :         MatRadioModule
+Toggle radio :  MatSlideToggleModule
+
+------------------------------------------------------------------------------
+select :        MatSelectModule
+Slider :        MatSliderModule
+datePicker :    
+                MatDatepickerModule
+                MatNativeDateModule (specifier le type de date dans le datepicker)
+    - ajouter un mat-form-field
+    - ajouter un input (matInput) + formcontrolName
+    - ajouter mat-datepicker-toggle
+    - ajouter mat-datepicker avec une reference : #picker
+    - lier le togglepicker avec le datepicker : [for]="picker"
+    - connecter notre input avec le mat-datepicker : [matDatepicker]="picker"
+
+Pour mettre en place un range picker : 
+                MatDatepickerModule
+                MatNativeDateModule
+    - ajouter un mat-form-field
+    - ajouter un mat-range-date-input
+    - y mettre deux inputs (un pour start et l'autre pour end) + formcontrolname
+    - ajouter mat-datepicker-toggle
+    - ajouter mat-date-range-picker avec une reference : #range 
+    - lier le togglepicker avec le mat-date-range-picker : [for]="picker"
+    - connecter mat-range-date-input avec mat-date-range-picker : [rangePicker]="range"
+------------------------------------------------------------------------------

@@ -1,0 +1,33 @@
+pre {
+  width: auto;
+  background-color: aqua;
+  position: fixed;
+  right: 50px;
+  top: 50px;
+
+  margin-top: -2.5em;
+}
+
+form {
+  padding: 0 20px;
+}
+
+div {
+  padding: 5px;
+}
+
+.group-radio {
+  display: flex;
+  flex-direction: column;
+}
+
+.bouton-radio {
+  margin: 5px;
+}
+
+.activity-picked {
+  margin: 15px 0;
+}
+span {
+  margin-right: 5px;
+}

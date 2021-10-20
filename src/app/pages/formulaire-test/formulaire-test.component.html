@@ -1,0 +1,152 @@
+<h3>Formulaire avec material</h3>
+
+<pre>{{ formulaire.value | json }}</pre>
+
+<form [formGroup]="formulaire">
+  <h4>Input - Checkbox - Radio - SlideToggle</h4>
+  <div>
+    <mat-form-field color="accent" floatLabel="auto">
+      <!-- label + input -->
+      <mat-label> Nom </mat-label>
+      <input
+        matInput
+        required
+        type="text"
+        placeholder="Votre nom ..."
+        formControlName="inputName"
+      />
+
+      <!-- hint prefix suffix icon  -->
+      <span matPrefix>Pseudo : </span>
+      <mat-icon color="accent" matSuffix>perm_identity</mat-icon>
+      <mat-hint>votre nom ? </mat-hint>
+      <mat-hint align="end">
+        {{ formulaire.get("inputName")?.value.length }} / 20
+      </mat-hint>
+
+      <!-- gestion des erreurs : -->
+      <mat-error *ngIf="formulaire.get('inputName')?.errors?.required"
+        >Le champs est obligatoire !!
+      </mat-error>
+      <mat-error *ngIf="formulaire.get('inputName')?.errors?.maxlength"
+        >Le champs est trop long !!
+      </mat-error>
+    </mat-form-field>
+  </div>
+
+  <!-- checkbox -->
+  <div>
+    <mat-checkbox labelPosition="before" formControlName="checkboxMajeur"
+      >Majeur</mat-checkbox
+    >
+  </div>
+
+  <!-- radio button -->
+  <div>
+    <mat-radio-group
+      color="primary"
+      class="group-radio"
+      [(ngModel)]="activityFavorite"
+      formControlName="radioActivity"
+    >
+      <mat-radio-button
+        *ngFor="let activity of activities"
+        class="bouton-radio"
+        [value]="activity"
+        >{{ activity }}</mat-radio-button
+      >
+    </mat-radio-group>
+
+    <div class="activity-picked">Activité choisie : {{ activityFavorite }}</div>
+  </div>
+
+  <!-- toggle button -->
+  <div>
+    <mat-slide-toggle color="warn" formControlName="toggleMajeur"
+      >Majeur</mat-slide-toggle
+    >
+  </div>
+  <h4>Select, Slider et DatePicker</h4>
+
+  <!-- select -->
+  <div>
+    <mat-label>Boisson : </mat-label>
+    <mat-form-field color="accent" floatLabel="never">
+      <mat-select
+        required
+        placeholder="Votre boisson ..."
+        formControlName="selectFood"
+      >
+        <mat-option value="Coca-cola">Coca-cola</mat-option>
+        <mat-option value="Coca-cola Light">Coca-cola Light</mat-option>
+        <mat-option value="Fanta Citron">Fanta Citron</mat-option>
+        <mat-option value="Fanta orange">Fanta Orange</mat-option>
+        <mat-option value="Dr. Pepper">Dr. Pepper</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-hint>( hint )</mat-hint>
+  </div>
+
+  <!-- slider -->
+
+  <div>
+    <mat-label
+      >Quantité : {{ formulaire.get("sliderQuantity")?.value }}</mat-label
+    >
+    <mat-slider
+      thumbLabel="true"
+      formControlName="sliderQuantity"
+      value="50"
+      min="0"
+      max="200"
+      step="5"
+    ></mat-slider>
+  </div>
+
+  <!-- datepicker -->
+  <div>
+    <mat-label>Date à selectionner :</mat-label>
+    <mat-form-field floatLabel="auto">
+      <input matInput [matDatepicker]="picker" formControlName="date" />
+      <mat-datepicker-toggle [for]="picker" matSuffix> </mat-datepicker-toggle>
+      <mat-datepicker #picker> </mat-datepicker>
+    </mat-form-field>
+  </div>
+
+  <!-- range datepicker -->
+  <mat-form-field appearance="fill" color="accent">
+    <mat-label>Entrer un interval de date</mat-label>
+    <div>
+      <mat-date-range-input
+        formGroupName="rangeDate"
+        [rangePicker]="rangepicker"
+      >
+        <input
+          matStartDate
+          formControlName="startDate"
+          placeholder="Start date"
+        />
+        <input matEndDate formControlName="endDate" placeholder="End date" />
+      </mat-date-range-input>
+    </div>
+    <mat-datepicker-toggle
+      matSuffix
+      [for]="rangepicker"
+    ></mat-datepicker-toggle>
+    <mat-date-range-picker #rangepicker></mat-date-range-picker>
+  </mat-form-field>
+
+  <p>Selected range: {{ rangeDate.value | json }}</p>
+
+  <div>
+    <mat-form-field>
+      <mat-label>Interval de date à selectionner :</mat-label>
+      <mat-date-range-input formGroupName="rangeDate" [rangePicker]="range">
+        <input matStartDate placeholder="de" formControlName="startDate" />
+        <input matEndDate placeholder="à" formControlName="endDate" />
+      </mat-date-range-input>
+      <mat-datepicker-toggle [for]="range" matPrefix> </mat-datepicker-toggle>
+      <mat-date-range-picker #range></mat-date-range-picker>
+    </mat-form-field>
+  </div>
+</form>
